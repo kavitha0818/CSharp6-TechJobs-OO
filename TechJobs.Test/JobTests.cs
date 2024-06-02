@@ -17,6 +17,8 @@ namespace TechJobs.Tests
         Job job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job5 = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
 
         [TestMethod]
         public void TestSettingJobId()
@@ -38,11 +40,44 @@ namespace TechJobs.Tests
         [TestMethod]
         public void TestJobsForEquality()
         {
-            Job job1 = new Job();
-            Job job2 = new Job();
-
             Assert.IsFalse(job1.Equals(job2), "Equals() method should return false for two Job objects with different IDs.");
         }
+
+        [TestMethod]
+        public void TestToStringStartsAndEndsWithNewLine()
+        {
+            Assert.IsTrue(job3.ToString().StartsWith("\n"), "ToString() does not start with a new line.");
+            Assert.IsTrue(job3.ToString().EndsWith("\n"), "ToString() does not end with a new line.");
+        }
+
+        [TestMethod]
+        public void TestToStringContainsCorrectLabelsAndData()
+        {
+            // Expected output format
+            string expected = "\nID: " + job3.Id +
+                              "\nName: Product tester" +
+                              "\nEmployer: ACME" +
+                              "\nLocation: Desert" +
+                              "\nPosition Type: Quality control" +
+                              "\nCore Competency: Persistence\n";
+
+            Assert.AreEqual(expected, job3.ToString(), "ToString() does not contain correct labels and data.");
+        }
+
+        
+        [TestMethod]
+        public void TestToStringHandlesEmptyField()
+        {            
+            // Expected output format with empty fields
+            string expected = "\nID: " + job5.Id +
+                              "\nName: Product tester" +
+                              "\nEmployer: Data not available" +
+                              "\nLocation: Desert" +
+                              "\nPosition Type: Quality control" +
+                              "\nCore Competency: Persistence\n";
+            Assert.AreEqual(expected, job5.ToString(), "ToString() does not handle empty fields correctly.");
+        }
+
 
     }
 
