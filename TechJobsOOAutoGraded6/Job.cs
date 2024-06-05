@@ -19,7 +19,7 @@ namespace TechJobsOOAutoGraded6
             Id = nextId;
             nextId++;
         }
-
+      //constructor methods- create and initialize objects of a class
         public Job(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
         {
             Name = name;
@@ -34,6 +34,7 @@ namespace TechJobsOOAutoGraded6
 
         // TODO: Task 5: Generate custom ToString() method.
         //Until you create this method, you will not be able to print a job to the console.
+        //Assigns Data not available- Assigns value to string
         public override string ToString()
         {
             string idString = Id.ToString();
@@ -62,6 +63,7 @@ namespace TechJobsOOAutoGraded6
         }
     }
 }
+
 
 
 
